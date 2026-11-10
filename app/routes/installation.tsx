@@ -1,4 +1,4 @@
-import { Crumb, GuidePager, Step, Steps } from "~/components/docs";
+import { Callout, Crumb, GuidePager, Step, Steps } from "~/components/docs";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import type { Route } from "./+types/installation";
 
@@ -19,20 +19,22 @@ export default function Installation() {
         <TabsContent value="mac">
           <Steps>
             <Step title="Install the bridge">
-              Unzip <code>stripline-bridge-macOS.zip</code> and copy <code>Stripline.vst3</code> to{" "}
-              <code>~/Library/Audio/Plug-Ins/VST3</code>.
-            </Step>
-            <Step title="Allow it to run">
-              Builds aren't signed yet. Run this once in Terminal:
-              <pre>
-                <code>xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/VST3/Stripline.vst3</code>
-              </pre>
+              Open <code>Stripline-Bridge-vX.Y.Z-macOS.pkg</code>. It installs <code>Stripline.vst3</code> into{" "}
+              <code>/Library/Audio/Plug-Ins/VST3</code>.
             </Step>
             <Step title="Install the console">
-              Open <code>Stripline_x.y.z_aarch64.dmg</code> and drag Stripline to Applications. The first time,
-              right-click the app and choose <i>Open</i>.
+              Open <code>Stripline_x.y.z_aarch64.dmg</code> and drag Stripline to Applications, then open it.
+            </Step>
+            <Step title="Allow them to open">
+              The beta isn't signed by Apple yet, so macOS blocks the installer and the app the first time. Each time,
+              go to <i>System Settings → Privacy &amp; Security</i>, scroll to <i>Security</i> and click{" "}
+              <i>Open Anyway</i>. It's needed once per download.
             </Step>
           </Steps>
+          <Callout>
+            Installed an earlier beta by hand? Delete <code>~/Library/Audio/Plug-Ins/VST3/Stripline.vst3</code>, so
+            REAPER doesn't find two copies.
+          </Callout>
         </TabsContent>
         <TabsContent value="win">
           <Steps>
