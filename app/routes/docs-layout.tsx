@@ -82,6 +82,16 @@ export default function DocsLayout({ loaderData }: Route.ComponentProps) {
         <article className="prose max-w-[760px]">
           <Outlet />
         </article>
+        <footer className="mt-16 max-w-[760px] border-t border-border pt-5 text-xs leading-relaxed text-muted-foreground">
+          <p className="mb-2">
+            Stripline works with channel strip plug-ins made by other companies. You need your own licence for each of
+            them. Product and company names used by Stripline (for example SSL, Neve, API, Waves, IK Multimedia, Plugin
+            Alliance, Universal Audio, Analog Obsession, Riverflux Audio, Lindell, AMEK, Vertigo) are trademarks of their
+            owners and are used only to identify the plug-ins Stripline works with. Stripline is not affiliated with,
+            endorsed or sponsored by any of them. VST is a trademark of Steinberg Media Technologies GmbH.
+          </p>
+          <p>© 2026 Stripline (Edgar Gomez). Free to use, also commercially.</p>
+        </footer>
       </main>
     </div>
   );
