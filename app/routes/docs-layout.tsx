@@ -90,7 +90,7 @@ export default function DocsLayout({ loaderData }: Route.ComponentProps) {
             owners and are used only to identify the plug-ins Stripline works with. Stripline is not affiliated with,
             endorsed or sponsored by any of them. VST is a trademark of Steinberg Media Technologies GmbH.
           </p>
-          <p>© 2026 Stripline (Edgar Gomez). Free to use, also commercially.</p>
+          <p>© 2026 Stripline</p>
         </footer>
       </main>
     </div>
