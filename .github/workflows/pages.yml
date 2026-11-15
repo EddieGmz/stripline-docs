@@ -1,9 +1,11 @@
 name: Pages
 
-# Publishes the site when main changes (develop is merged into main by hand).
+# Publishes the site for a version tag (vX.Y.Z, or vX.Y.Z-beta.N), like the bridge and console builds.
+# Tag a commit on main. The github-pages environment must allow tags: Settings → Environments →
+# github-pages → Deployment branches and tags → add a tag rule "v*".
 on:
   push:
-    branches: [main]
+    tags: ['v*.*.*']
 
 permissions:
   contents: read
