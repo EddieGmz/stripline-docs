@@ -25,15 +25,15 @@ The site is served under `/stripline-docs/` (GitHub Pages). For another address 
 
 ## Publishing
 
-A version tag (`vX.Y.Z` or `vX.Y.Z-beta.N`) on `main` builds the site and publishes it to GitHub Pages
-(`.github/workflows/pages.yml`):
+A version tag (`vX.Y.Z` or `vX.Y.Z-beta.N`) on `main` builds the site and pushes it to the `gh-pages` branch
+(`.github/workflows/pages.yml`), which GitHub Pages serves:
 
 ```bash
 git tag -a v0.1.0 -m "Docs 0.1.0" origin/main && git push origin v0.1.0
 ```
 
-Once, in the repository: *Settings → Pages → Source: GitHub Actions*, and *Settings → Environments → github-pages →
-Deployment branches and tags*: add a tag rule `v*` (by default only the default branch may publish).
+Once, in the repository: *Settings → Pages → Source: Deploy from a branch*, branch `gh-pages`, folder `/ (root)`
+(the branch exists after the first tag build).
 
 ## Updating the channel strips
 

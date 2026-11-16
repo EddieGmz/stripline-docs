@@ -1,23 +1,22 @@
 name: Pages
 
 # Publishes the site for a version tag (vX.Y.Z, or vX.Y.Z-beta.N), like the bridge and console builds.
-# Tag a commit on main. The github-pages environment must allow tags: Settings → Environments →
-# github-pages → Deployment branches and tags → add a tag rule "v*".
+# Tag a commit on main. The built site is pushed to the gh-pages branch, which GitHub Pages serves
+# (Settings → Pages → Source: Deploy from a branch → gh-pages, / (root)). No Actions artifacts: the free plan
+# counts their storage per month and caps it at 500 MB.
 on:
   push:
     tags: ['v*.*.*']
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,16 +27,13 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Push the site to the gh-pages branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd dist
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Docs $GITHUB_REF_NAME"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
