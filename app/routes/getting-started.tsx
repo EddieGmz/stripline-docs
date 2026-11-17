@@ -11,6 +11,25 @@ export default function GettingStarted() {
       <Crumb />
       <h1>Getting started</h1>
       <Steps>
+        <Step title="Turn on OSC in REAPER">
+          The console reaches REAPER's transport over OSC. In REAPER:{" "}
+          <i>Preferences → Control/OSC/web → Add → OSC (Open Sound Control)</i>, then set:
+          <ul className="my-2">
+            <li>
+              <b>Mode:</b> Configure device IP + local port
+            </li>
+            <li>
+              <b>Device IP:</b> <code>127.0.0.1</code>, <b>Device port:</b> <code>9000</code>
+            </li>
+            <li>
+              <b>Local listen port:</b> <code>8000</code>
+            </li>
+            <li>
+              <b>Pattern config:</b> Default
+            </li>
+          </ul>
+          Press <i>OK</i> to save it; REAPER keeps it for every project.
+        </Step>
         <Step title="Open the console">
           Start the Stripline app. It waits for bridges; nothing to set up.
         </Step>
